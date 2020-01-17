@@ -1,34 +1,159 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { Component } from "react";
+import {
+  Clipboard,
+  StyleSheet,
+  Share,
+  TextInput,
+  View,
+  TouchableHighlight
+} from "react-native";
+import { Button, Divider, Overlay, Text } from "react-native-elements";
 import R from "./R";
 
 const { PALETTE, IMAGES, COLORS } = R;
 
-const SadaqaButton = ({ pName, onPress }) => {
-  return (
-    <TouchableOpacity
-      style={[PALETTE.row, PALETTE.center, styles.itemWrapper]}
-      onPress={onPress}
-    >
-      <Text style={styles.text}>Hi</Text>
-    </TouchableOpacity>
-  );
-};
+class SadaqaButton extends Component {
+  state = {
+    sadaqaModal: false,
+    displayCopiedMessage: false,
+    sadaqaFor: "",
+    sadaqaFor: "",
+    displayCopiedMessage: false
+  };
+
+  handleTasaddaq() {
+    Share.share({
+      message: `هذا التطبيق صدقه جاريه عن ${this.state.sadaqaFor}, 
+      https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`,
+      title: "Share with"
+    });
+  }
+
+  async handleCopyLink() {
+    const message = `هذا التطبيق صدقه جاريه عن ${this.state.sadaqaFor}, 
+    https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`;
+    Clipboard.setString(message);
+
+    try {
+      const content = await Clipboard.getString();
+      this.setState({ displayCopiedMessage: true });
+      // timer 5 sec to disable displayCopiedMessage
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        <TouchableHighlight>
+          <Button
+            onPress={() => this.setState({ sadaqaModal: true })}
+            buttonStyle={styles.buttonStyle}
+            type="clear"
+            titleStyle={styles.titleStyle}
+            title="صـدقـة جــاريــة"
+          />
+        </TouchableHighlight>
+
+        {this.state.sadaqaModal && (
+          <Overlay
+            isVisible={this.state.sadaqaModal}
+            onBackdropPress={() =>
+              this.setState({
+                sadaqaModal: false,
+                displayCopiedMessage: false,
+                sadaqaFor: ""
+              })
+            }
+            overlayStyle={styles.overlyStyle}
+            borderRadius={8}
+          >
+            <>
+              <Text h4 style={{ textAlign: "center", paddingVertical: 15 }}>
+                تصدق بهذا البرنامج
+              </Text>
+              <Divider />
+              <Text
+                style={{
+                  textAlign: "right",
+                  paddingVertical: 15,
+                  fontSize: 18
+                }}
+              >
+                هذا البرنامج صدقة جارية عن
+              </Text>
+              <TextInput
+                placeholder="..."
+                style={styles.inputStyle}
+                value={this.state.sadaqaFor}
+                onChangeText={text => this.setState({ sadaqaFor: text })}
+              />
+              {this.state.displayCopiedMessage && (
+                <Text style={{ color: "green", textAlign: "center" }}>
+                  تم نسخ الرابط
+                </Text>
+              )}
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "center"
+                }}
+              >
+                <Button
+                  title="نسخ الرابط"
+                  style={{ padding: 6, width: 110, color: "white" }}
+                  linearGradientProps={{ colors: ["#3F51B5", "#3F51B5"] }}
+                  onPress={() => this.handleCopyLink()}
+                />
+                <Button
+                  title="تصدق"
+                  style={{ padding: 6, width: 110, color: "white" }}
+                  linearGradientProps={{ colors: ["#3F51B5", "#3F51B5"] }}
+                  onPress={() => this.handleTasaddaq()}
+                />
+              </View>
+            </>
+          </Overlay>
+        )}
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  itemWrapper: {
-    height: 62,
-    marginHorizontal: 20,
-    marginVertical: 8,
+  buttonStyle: {
     borderRadius: 5,
+    padding: 20,
+    margin: 10,
+    marginBottom: 3,
     backgroundColor: COLORS.blue
   },
-  text: {
-    fontSize: 21,
-    color: COLORS.white,
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4
+  titleStyle: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    shadowOffset: { width: 0.2, height: 0.1 },
+    shadowColor: "black",
+    shadowOpacity: 5
+  },
+  inputStyle: {
+    borderColor: "lightgrey",
+    borderRadius: 8,
+    borderWidth: 3,
+    height: 50,
+    marginVertical: 5,
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  overlyStyle: {
+    paddingTop: 5,
+    borderColor: "#3F51B5",
+    borderRadius: 10,
+    borderWidth: 4,
+    height: 300
   }
 });
 

@@ -164,12 +164,13 @@ const MyPrayersScreen = props => {
 
 var styles = StyleSheet.create({
   text: {
-    fontSize: 20,
     color: "white",
-    textAlign: "center",
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4
+    fontSize: 20,
+    fontWeight: "bold",
+    shadowOffset: { width: 0.2, height: 0.1 },
+    shadowColor: "black",
+    shadowOpacity: 5,
+    textAlign: "center"
   },
   addBtn: {
     position: "absolute",

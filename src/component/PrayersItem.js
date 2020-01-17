@@ -19,18 +19,19 @@ const PrayersItem = ({ pName, onPress }) => {
 
 const styles = StyleSheet.create({
   itemWrapper: {
-    height: 62,
-    marginHorizontal: 20,
-    marginVertical: 8,
     borderRadius: 5,
+    padding: 20,
+    margin: 10,
+    marginBottom: 3,
     backgroundColor: COLORS.blue
   },
   text: {
-    fontSize: 21,
-    color: COLORS.white,
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    shadowOffset: { width: 0.2, height: 0.1 },
+    shadowColor: "black",
+    shadowOpacity: 5
   }
 });
 

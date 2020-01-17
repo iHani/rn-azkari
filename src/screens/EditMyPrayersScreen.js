@@ -112,7 +112,7 @@ const EditMyPrayersScreen = props => {
               <TextInput
                 style={styles.textCount}
                 keyboardType="numeric"
-                value={times}
+                value={englishinize(times)}
                 onChangeText={text => setTimes(englishinize(text))}
               />
             </View>
@@ -159,27 +159,23 @@ var styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     paddingHorizontal: 40,
-    paddingVertical: 10
-    // color: "white",
-    // textAlignVertical: "center"
-    // width: 100,
-    // marginTop: 20,
-    // padding: 10,
-    // backgroundColor: COLORS.blue,
-    // borderRadius: 10,
-    // textAlign: "center"
+    paddingVertical: 10,
+    fontWeight: "bold",
+    shadowOffset: { width: 0.2, height: 0.1 },
+    shadowColor: "black",
+    shadowOpacity: 5,
+    textAlign: "center"
   },
   delete: {
     color: "white",
     fontSize: 20,
     paddingHorizontal: 40,
-    paddingVertical: 10
-    // width: 100,
-    // marginTop: 20,
-    // padding: 10,
-    // backgroundColor: "orange",
-    // borderRadius: 10,
-    // textAlign: "center"
+    paddingVertical: 10,
+    fontWeight: "bold",
+    shadowOffset: { width: 0.2, height: 0.1 },
+    shadowColor: "black",
+    shadowOpacity: 5,
+    textAlign: "center"
   },
   text: {
     fontSize: 20,
