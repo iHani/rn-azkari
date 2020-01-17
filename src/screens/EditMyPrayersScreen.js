@@ -68,6 +68,9 @@ const EditMyPrayersScreen = props => {
     );
   };
 
+  englishinize = number =>
+    number.replace(/[٠١٢٣٤٥٦٧٨٩]/g, d => parseInt(d.charCodeAt(0) - 1632));
+
   return (
     <KeyboardAvoidingView
       style={[
@@ -110,7 +113,7 @@ const EditMyPrayersScreen = props => {
                 style={styles.textCount}
                 keyboardType="numeric"
                 value={times}
-                onChangeText={text => setTimes(text)}
+                onChangeText={text => setTimes(englishinize(text))}
               />
             </View>
             <View style={PALETTE.row}>

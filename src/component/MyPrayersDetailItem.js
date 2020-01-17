@@ -9,6 +9,7 @@ const MyPrayersDetailItem = ({
   pContent,
   pCount,
   onPressCount,
+  editPrayers,
   fontSize,
   onShare
 }) => {
@@ -27,9 +28,12 @@ const MyPrayersDetailItem = ({
           styles.countWrapper
         ]}
       >
-        <TouchableOpacity onPress={onShare}>
-          <Text>
+        <TouchableOpacity style={{ flexDirection: "row" }}>
+          <Text onPress={() => onShare(pContent)}>
             <Icon name="md-send" size={23} color={COLORS.white} />
+          </Text>
+          <Text style={{ paddingHorizontal: 10 }} onPress={editPrayers}>
+            <Icon name="md-create" size={23} color={COLORS.white} />
           </Text>
         </TouchableOpacity>
         <Text style={styles.textCount}>{getCuontAsText(pCount)}</Text>
@@ -41,7 +45,8 @@ const MyPrayersDetailItem = ({
 function getCuontAsText(number = 1) {
   if (number === 1) {
     return `مره واحده`;
-  } else if (number === 2) {
+  } else if (number == 2) {
+    // weirdly '===' will fail if 2 is 2!
     return `مرتين`;
   } else if (number < 11) {
     return `${number} مرات`;
@@ -53,7 +58,7 @@ function getCuontAsText(number = 1) {
 const styles = StyleSheet.create({
   mainWrapper: {
     marginHorizontal: 7,
-    marginBottom: 10
+    marginBottom: 7
   },
   countWrapper: {
     width: "100%",

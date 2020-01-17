@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import R from "../component/R";
 import HomeHeader from "../component/HomeHeader";
+import SadaqaButton from "../component/SadaqaButton";
 import PrayersItem from "../component/PrayersItem";
 import Database from "../../Database";
 import allPrayers from "../../assets/allPrayers";
@@ -114,6 +115,7 @@ const HomeScreen = props => {
 
       {/** Body Section */}
       <View style={(PALETTE.center, styles.bodyWrapper)}>
+        <SadaqaButton />
         <FlatList
           data={userData}
           extraData={refresh}

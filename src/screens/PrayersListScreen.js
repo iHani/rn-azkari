@@ -9,6 +9,8 @@ const { COLORS, IMAGES, PALETTE } = R;
 const db = new Database();
 
 const PrayersListScreen = props => {
+  console.log("props", props);
+
   const userID = props.navigation.getParam("id", 0);
   const userName = props.navigation.getParam("userName", "");
   const PRAYERS_DETAIL_DATA = JSON.parse(
@@ -54,10 +56,11 @@ const PrayersListScreen = props => {
     }
   };
 
-  const onShare = () => {
+  const onShare = prayer => {
+    const brand = `Azkari App تطبيق أذكاري  
+      https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`;
     Share.share({
-      message: `Azkari App تطبيق أذكاري  
-      https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`,
+      message: prayer ? prayer : brand,
       title: "Share with"
     });
   };

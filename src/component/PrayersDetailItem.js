@@ -27,7 +27,7 @@ const PrayersDetailItem = ({
           styles.countWrapper
         ]}
       >
-        <TouchableOpacity onPress={onShare}>
+        <TouchableOpacity onPress={() => onShare(pContent)}>
           <Text>
             <Icon name="md-send" size={23} color={COLORS.white} />
           </Text>

@@ -92,10 +92,11 @@ const MyPrayersScreen = props => {
     }
   };
 
-  const onShare = () => {
+  const onShare = prayer => {
+    const brand = `Azkari App تطبيق أذكاري  
+      https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`;
     Share.share({
-      message: `Azkari App تطبيق أذكاري  
-      https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`,
+      message: prayer ? prayer : brand,
       title: "Share with"
     });
   };
