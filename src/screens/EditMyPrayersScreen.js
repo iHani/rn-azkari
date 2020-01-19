@@ -19,7 +19,7 @@ const { COLORS, IMAGES, PALETTE } = R;
 const db = new Database();
 
 const EditMyPrayersScreen = props => {
-  const [times, setTimes] = useState("");
+  const [times, setTimes] = useState("1");
   const [text, setText] = useState("");
 
   const flag = props.navigation.getParam("flag", 0);
@@ -36,11 +36,15 @@ const EditMyPrayersScreen = props => {
   const submit = () => {
     if (flag == 1) {
       const editSubmit = props.navigation.getParam("editSubmit", "");
-      editSubmit(times, text, index);
+      if (times.trim() && text.trim()) {
+        editSubmit(times, text, index);
+      }
       props.navigation.goBack();
     } else {
       const addSubmit = props.navigation.getParam("addSubmit", "");
-      addSubmit(times, text);
+      if (times.trim() && text.trim()) {
+        addSubmit(times, text);
+      }
       props.navigation.goBack();
     }
   };

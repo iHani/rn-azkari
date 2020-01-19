@@ -49,7 +49,7 @@ const MyPrayersScreen = props => {
     setRefresh(!refresh);
   };
 
-  const editSubmit = (times, text, index) => {
+  const editSubmit = (times = 1, text, index) => {
     const data = { times, text };
     const newArr = prayersData;
     newArr[index] = data;

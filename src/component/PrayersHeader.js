@@ -1,7 +1,6 @@
 import React from "react";
 import {
   View,
-  Image,
   TouchableOpacity,
   StyleSheet,
   Text,
@@ -11,7 +10,7 @@ import {
 import R from "./R";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const { PALETTE, IMAGES, COLORS } = R;
+const { PALETTE, COLORS } = R;
 
 const PrayersHeader = ({
   onPressBack,
@@ -48,7 +47,9 @@ const PrayersHeader = ({
           </Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.headerText}>{headerTitle.replace(/ـ/g, "")}</Text>
+      <Text style={styles.headerText}>
+        {headerTitle.replace(/ـ/g, "").replace("My Prayers", "أذكــــاري")}
+      </Text>
     </View>
   );
 };

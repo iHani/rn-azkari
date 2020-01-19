@@ -7,9 +7,7 @@ export default class Database {
     return new Promise((resolve, reject) => {
       db.transaction(
         tx => {
-          tx.executeSql(
-            "CREATE TABLE table_user1 (userId, userName, prayers);"
-          );
+          tx.executeSql("CREATE TABLE azkari (userId, userName, prayers);");
         },
         error => {
           reject(error);
@@ -25,7 +23,7 @@ export default class Database {
     return new Promise((resolve, reject) => {
       db.transaction(
         tx => {
-          tx.executeSql("INSERT INTO table_user1 VALUES (?, ?, ?)", [
+          tx.executeSql("INSERT INTO azkari VALUES (?, ?, ?)", [
             data.id,
             data.name,
             JSON.stringify(data.prayers)
@@ -44,10 +42,8 @@ export default class Database {
   listProduct() {
     return new Promise(resolve => {
       db.transaction(tx => {
-        tx.executeSql(
-          "SELECT * from table_user1",
-          [],
-          (_, { rows: { _array } }) => resolve(_array)
+        tx.executeSql("SELECT * from azkari", [], (_, { rows: { _array } }) =>
+          resolve(_array)
         );
       });
     });
@@ -57,7 +53,7 @@ export default class Database {
     return new Promise((resolve, reject) => {
       db.transaction(
         tx => {
-          tx.executeSql("UPDATE table_user1 SET prayers = ? WHERE userId = ?", [
+          tx.executeSql("UPDATE azkari SET prayers = ? WHERE userId = ?", [
             JSON.stringify(data),
             id
           ]);
