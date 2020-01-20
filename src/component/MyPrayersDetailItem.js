@@ -42,8 +42,13 @@ const MyPrayersDetailItem = ({
   );
 };
 
-function getCuontAsText(number = 1) {
-  if (number === 1) {
+function getCuontAsText(number) {
+  console.log("dddd", parseInt(number) && true);
+  if (parseInt(number) == 0) {
+    number = 1;
+  }
+
+  if (number == 1) {
     return `مره واحده`;
   } else if (number == 2) {
     // weirdly '===' will fail if 2 is 2!
