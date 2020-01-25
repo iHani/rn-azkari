@@ -23,7 +23,7 @@ const EditMyPrayersScreen = props => {
   const [text, setText] = useState("");
 
   const flag = props.navigation.getParam("flag", 0);
-  const edtData = props.navigation.getParam("data", []);
+  const edtData = props.navigation.getParam("data", {});
   const index = props.navigation.getParam("index", index);
 
   useEffect(() => {

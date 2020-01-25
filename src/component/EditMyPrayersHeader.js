@@ -1,7 +1,6 @@
 import React from "react";
 import {
   View,
-  Image,
   TouchableOpacity,
   StyleSheet,
   Text,
@@ -11,7 +10,7 @@ import {
 import R from "./R";
 import Icon from "react-native-vector-icons/AntDesign";
 
-const { PALETTE, IMAGES, COLORS } = R;
+const { PALETTE, COLORS } = R;
 
 const EditMyPrayersHeader = ({ onPressBack, onPressPlus, onPressMinus }) => {
   return (
@@ -28,7 +27,7 @@ const EditMyPrayersHeader = ({ onPressBack, onPressPlus, onPressMinus }) => {
     >
       <TouchableOpacity onPress={onPressBack}>
         <Text>
-          <Icon name="arrowleft" size={20} color={COLORS.white} />
+          <Icon name="arrowleft" size={30} color={COLORS.white} />
         </Text>
       </TouchableOpacity>
       <Text style={styles.headerText}>{"تــعــديــل الــدعــاء"}</Text>

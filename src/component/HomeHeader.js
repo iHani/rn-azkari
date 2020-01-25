@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: COLORS.white,
-    fontSize: 22
+    fontSize: 22,
+    fontWeight: "700"
   }
 });
 

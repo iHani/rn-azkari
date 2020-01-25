@@ -145,7 +145,7 @@ const MyPrayersScreen = props => {
                 onPressCount={() => setCount(index)}
                 editPrayers={() =>
                   props.navigation.navigate("EditMyPrayersScreen", {
-                    editSubmit: editSubmit,
+                    editSubmit,
                     deleteSubmit,
                     deleteSubmit,
                     data: prayersData[index],

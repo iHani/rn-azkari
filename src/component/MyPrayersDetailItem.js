@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
   textContent: {
     writingDirection: "rtl",
     lineHeight: 38,
-    color: COLORS.blue
+    color: COLORS.darkblue,
+    fontWeight: "600"
   },
   textCount: {
     fontSize: 14,
