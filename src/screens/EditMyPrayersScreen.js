@@ -28,8 +28,8 @@ const EditMyPrayersScreen = props => {
 
   useEffect(() => {
     if (flag === 1) {
-      setTimes(edtData.times);
-      setText(edtData.text);
+      setTimes(edtData && edtData.times ? edtData.times.toString() : "1");
+      setText(edtData.text || "");
     }
   }, []);
 
