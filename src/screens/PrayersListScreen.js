@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Image, FlatList, StyleSheet, Share } from "react-native";
 import R from "../component/R";
 import PrayersHeader from "../component/PrayersHeader";
@@ -6,12 +6,8 @@ import PrayersDetailItem from "../component/PrayersDetailItem";
 import Database from "../../Database";
 
 const { COLORS, IMAGES, PALETTE } = R;
-const db = new Database();
 
 const PrayersListScreen = props => {
-  console.log("props", props);
-
-  const userID = props.navigation.getParam("id", 0);
   const userName = props.navigation.getParam("userName", "");
   const PRAYERS_DETAIL_DATA = JSON.parse(
     props.navigation.getParam("prayers", "")
@@ -30,14 +26,11 @@ const PrayersListScreen = props => {
     } else {
       newArr.splice(index, 1);
     }
-    // db.updatePrayers(userID, newArr);
     setPrayersData(newArr);
   };
 
   const update = () => {
     const updateFont = props.navigation.getParam("updateFont", "");
-    // const index = props.navigation.getParam('index', '');
-    // updateHomeData(prayersData, index, fontSize);
     updateFont(fontSize);
     props.navigation.goBack();
   };

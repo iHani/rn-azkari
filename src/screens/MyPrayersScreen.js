@@ -148,7 +148,7 @@ const MyPrayersScreen = props => {
                     editSubmit: editSubmit,
                     deleteSubmit,
                     deleteSubmit,
-                    data: prayersData[index],
+                    data: MYPRAYERS_DATA[index],
                     flag: 1,
                     index: index
                   })

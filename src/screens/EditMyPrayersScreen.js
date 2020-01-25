@@ -36,7 +36,7 @@ const EditMyPrayersScreen = props => {
   const submit = () => {
     if (flag == 1) {
       const editSubmit = props.navigation.getParam("editSubmit", "");
-      if (times.trim() && text.trim()) {
+      if (times.toString().trim() && text.trim()) {
         editSubmit(times, text, index);
       }
       props.navigation.goBack();
@@ -72,8 +72,13 @@ const EditMyPrayersScreen = props => {
     );
   };
 
-  englishinize = number =>
-    number.replace(/[٠١٢٣٤٥٦٧٨٩]/g, d => parseInt(d.charCodeAt(0) - 1632));
+  const englishinize = number => {
+    console.log("typeof number", typeof number);
+
+    return number
+      .toString()
+      .replace(/[٠١٢٣٤٥٦٧٨٩]/g, d => parseInt(d.charCodeAt(0) - 1632));
+  };
 
   return (
     <KeyboardAvoidingView

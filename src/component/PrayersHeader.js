@@ -48,7 +48,7 @@ const PrayersHeader = ({
         </TouchableOpacity>
       </View>
       <Text style={styles.headerText}>
-        {headerTitle.replace(/ـ/g, "").replace("My Prayers", "أذكــــاري")}
+        {headerTitle.replace(/ـ/g, "").replace("My Prayers", "أذكـ77ـــاري")}
       </Text>
     </View>
   );
