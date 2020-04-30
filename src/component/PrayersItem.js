@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 10,
     marginBottom: 3,
-    backgroundColor: COLORS.blue
+    backgroundColor: COLORS.blue,
   },
   text: {
     color: "white",
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     shadowOffset: { width: 0.2, height: 0.1 },
     shadowColor: "black",
-    shadowOpacity: 5
-  }
+    shadowOpacity: 5,
+  },
 });
 
 export default PrayersItem;

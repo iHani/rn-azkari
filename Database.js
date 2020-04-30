@@ -2,17 +2,30 @@ import * as SQLite from "expo-sqlite";
 
 const db = SQLite.openDatabase("Prayers.db", "1.0");
 
+// Reset database
+// db.transaction(
+//   (tx) => {
+//     tx.executeSql("DROP TABLE az_dev;");
+//   },
+//   (error) => {
+//     reject(error);
+//   },
+//   (success) => {
+//     resolve(success);
+//   }
+// );
+
 export default class Database {
   initDB() {
     return new Promise((resolve, reject) => {
       db.transaction(
-        tx => {
+        (tx) => {
           tx.executeSql("CREATE TABLE az_dev (userId, userName, prayers);");
         },
-        error => {
+        (error) => {
           reject(error);
         },
-        success => {
+        (success) => {
           resolve(success);
         }
       );
@@ -22,17 +35,17 @@ export default class Database {
   addUsersToDB(data) {
     return new Promise((resolve, reject) => {
       db.transaction(
-        tx => {
+        (tx) => {
           tx.executeSql("INSERT INTO az_dev VALUES (?, ?, ?)", [
             data.id,
             data.name,
-            JSON.stringify(data.prayers)
+            JSON.stringify(data.prayers),
           ]);
         },
-        error => {
+        (error) => {
           reject(error);
         },
-        success => {
+        (success) => {
           resolve(success);
         }
       );
@@ -40,8 +53,8 @@ export default class Database {
   }
 
   listProduct() {
-    return new Promise(resolve => {
-      db.transaction(tx => {
+    return new Promise((resolve) => {
+      db.transaction((tx) => {
         tx.executeSql("SELECT * from az_dev", [], (_, { rows: { _array } }) =>
           resolve(_array)
         );
@@ -52,16 +65,16 @@ export default class Database {
   updatePrayers(id, data) {
     return new Promise((resolve, reject) => {
       db.transaction(
-        tx => {
+        (tx) => {
           tx.executeSql("UPDATE az_dev SET prayers = ? WHERE userId = ?", [
             JSON.stringify(data),
-            id
+            id,
           ]);
         },
-        error => {
+        (error) => {
           reject(error);
         },
-        success => {
+        (success) => {
           resolve(success);
         }
       );

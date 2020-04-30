@@ -5,7 +5,7 @@ import {
   FlatList,
   StyleSheet,
   AsyncStorage,
-  Share
+  Share,
 } from "react-native";
 import R from "../component/R";
 import HomeHeader from "../component/HomeHeader";
@@ -19,13 +19,13 @@ const { COLORS, IMAGES, PALETTE } = R;
 const USERS_DATA = allPrayers;
 const myData = {
   id: "myData",
-  name: "أذكـــاري",
-  prayers: []
+  name: "أذكــــــــــــــــــاري",
+  prayers: [],
 };
 
 const db = new Database();
 
-const HomeScreen = props => {
+const HomeScreen = (props) => {
   const [userData, setUserData] = useState();
   const [fontSize, setFontSize] = useState(20);
   const [refresh, setRefresh] = useState(false);
@@ -34,10 +34,11 @@ const HomeScreen = props => {
     db.initDB()
       .then(async () => {
         try {
-          db.addUsersToDB(myData);
-          await USERS_DATA.map(data => {
+          await USERS_DATA.map((data) => {
             db.addUsersToDB(data);
           });
+          db.addUsersToDB(myData);
+
           const data = await db.listProduct();
           setUserData(data);
         } catch (error) {
@@ -87,7 +88,7 @@ const HomeScreen = props => {
     setUserData(newData);
   };
 
-  const updateFont = fontSize => {
+  const updateFont = (fontSize) => {
     _storeData(fontSize);
   };
 
@@ -95,7 +96,7 @@ const HomeScreen = props => {
     Share.share({
       message: `Azkari App تطبيق أذكاري  
       https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`,
-      title: "Share with"
+      title: "Share with",
     });
   };
 
@@ -104,8 +105,8 @@ const HomeScreen = props => {
       style={[
         PALETTE.body,
         {
-          backgroundColor: COLORS.bluePastel
-        }
+          backgroundColor: COLORS.bluePastel,
+        },
       ]}
     >
       <Image source={IMAGES.BACKGROUND} style={styles.bgImage} />
@@ -124,12 +125,12 @@ const HomeScreen = props => {
             <PrayersItem
               pName={item.userName}
               onPress={() => {
-                index == 0
+                index == userData.length - 1
                   ? props.navigation.navigate("MyPrayersScreen", {
-                      myData: userData[0].prayers,
+                      myData: userData[userData.length - 1].prayers,
                       update: update,
                       fontSize: fontSize,
-                      updateFont: updateFont
+                      updateFont: updateFont,
                     })
                   : props.navigation.navigate("PrayersListScreen", {
                       index: index,
@@ -137,7 +138,7 @@ const HomeScreen = props => {
                       prayers: item.prayers,
                       updateFont: updateFont,
                       userName: item.userName,
-                      fontSize: fontSize
+                      fontSize: fontSize,
                     });
               }}
             />
@@ -153,11 +154,11 @@ var styles = StyleSheet.create({
     marginTop: 60,
     flex: 1,
     resizeMode: "cover",
-    position: "absolute"
+    position: "absolute",
   },
   bodyWrapper: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default HomeScreen;

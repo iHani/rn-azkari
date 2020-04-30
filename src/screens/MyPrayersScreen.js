@@ -6,7 +6,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
-  Share
+  Share,
 } from "react-native";
 import R from "../component/R";
 import MyPrayersHeader from "../component/MyPrayersHeader";
@@ -17,7 +17,7 @@ const { COLORS, IMAGES, PALETTE } = R;
 
 const db = new Database();
 
-const MyPrayersScreen = props => {
+const MyPrayersScreen = (props) => {
   const MYPRAYERS_DATA = JSON.parse(props.navigation.getParam("myData", ""));
   const [prayersData, setPrayersData] = useState(MYPRAYERS_DATA);
   const [refresh, setRefresh] = useState(false);
@@ -25,7 +25,7 @@ const MyPrayersScreen = props => {
     props.navigation.getParam("fontSize", 0)
   );
 
-  const setCount = index => {
+  const setCount = (index) => {
     let newArr = [...prayersData];
     if (newArr[index].times > 1) {
       newArr[index].times--;
@@ -33,7 +33,6 @@ const MyPrayersScreen = props => {
       newArr.splice(index, 1);
     }
 
-    // db.updatePrayers('myData', newArr);
     setPrayersData(newArr);
   };
 
@@ -61,7 +60,7 @@ const MyPrayersScreen = props => {
     setRefresh(!refresh);
   };
 
-  const deleteSubmit = index => {
+  const deleteSubmit = (index) => {
     const newArr = prayersData;
     newArr.splice(index, 1);
     db.updatePrayers("myData", newArr);
@@ -92,12 +91,12 @@ const MyPrayersScreen = props => {
     }
   };
 
-  const onShare = prayer => {
+  const onShare = (prayer) => {
     const brand = `Azkari App تطبيق أذكاري  
       https://play.google.com/store/apps/details?id=www.akfaa.co.azkari`;
     Share.share({
       message: prayer ? prayer : brand,
-      title: "Share with"
+      title: "Share with",
     });
   };
 
@@ -106,8 +105,8 @@ const MyPrayersScreen = props => {
       style={[
         PALETTE.body,
         {
-          backgroundColor: COLORS.bluePastel
-        }
+          backgroundColor: COLORS.bluePastel,
+        },
       ]}
     >
       <Image source={IMAGES.BACKGROUND} style={styles.bgImage} />
@@ -125,7 +124,7 @@ const MyPrayersScreen = props => {
           style={styles.addBtn}
           onPress={() =>
             props.navigation.navigate("EditMyPrayersScreen", {
-              addSubmit: addSubmit
+              addSubmit: addSubmit,
             })
           }
         >
@@ -150,7 +149,7 @@ const MyPrayersScreen = props => {
                     deleteSubmit,
                     data: prayersData[index],
                     flag: 1,
-                    index: index
+                    index: index,
                   })
                 }
               />
@@ -170,7 +169,7 @@ var styles = StyleSheet.create({
     shadowOffset: { width: 0.2, height: 0.1 },
     shadowColor: "black",
     shadowOpacity: 5,
-    textAlign: "center"
+    textAlign: "center",
   },
   addBtn: {
     position: "absolute",
@@ -180,18 +179,18 @@ var styles = StyleSheet.create({
     borderRadius: 5,
     bottom: 0,
     zIndex: 1,
-    width: "90%"
+    width: "90%",
   },
   bgImage: {
     marginTop: 60,
     flex: 1,
     resizeMode: "cover",
-    position: "absolute"
+    position: "absolute",
   },
   flatListWrapper: {
     marginTop: 15,
-    marginBottom: 60
-  }
+    marginBottom: 60,
+  },
 });
 
 export default MyPrayersScreen;
